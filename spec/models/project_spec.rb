@@ -17,5 +17,25 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:project) { build(:project) }
+  let(:user) { create(:user) }
+
+  describe("Validations") do
+    it("validates presence of title") do
+      project = build(:project, :without_title, user:).save
+
+      expect(project).to eq(false)
+
+      project = build(:project, user:).save
+      expect(project).to eq(true)
+    end
+  end
+
+  describe("Associations") do
+    it("does not save project without user") do
+      project = build(:project).save
+
+      expect(project).to eq(false)
+    end
+  end
 end
