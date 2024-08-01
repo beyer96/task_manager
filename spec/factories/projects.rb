@@ -16,9 +16,13 @@
 #
 FactoryBot.define do
   factory :project do
-    title { "MyString" }
-    description { "MyText" }
+    title { "Project 1" }
+    description { "Description" }
     is_done { false }
     attachment { nil }
+
+    trait :without_title do
+      title { nil }
+    end
   end
 end
