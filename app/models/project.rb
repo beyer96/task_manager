@@ -15,6 +15,7 @@
 #  index_projects_on_user_id  (user_id)
 #
 class Project < ApplicationRecord
+  validates :title, presence: true
   has_one_attached :attachment
   belongs_to :user
 end
