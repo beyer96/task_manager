@@ -1,10 +1,12 @@
 .navbar.navbar-dark.bg-dark
   .container-fluid
     = link_to("Task manager", root_path, class: "navbar-brand")
+    ul.navbar-nav.d-flex.gap-3.flex-row
+      li.nav-item = link_to("Projekty", projects_path, class: "nav-link")
 
     ul.navbar-nav.ms-auto.d-flex.gap-3.flex-row
       - if current_user
-        li.nav-item.d-inline
+        li.nav-item
           = link_to(edit_user_registration_path, class: "nav-link", data: { bs_toggle: :tooltip, bs_title: "Přejít do nastavení účtu"}) do
             i.bi.bi-person.me-1
             = current_user.full_name
