@@ -21,5 +21,31 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe("Validations") do
+    it "saves valid user" do
+      user = create(:user).save
+
+      expect(user).to eq(true)
+    end
+
+    it "validates presence of first_name" do
+      invalid_user = build(:user, :without_first_name).save
+
+      expect(invalid_user).to eq(false)
+    end
+
+    it "validates presence of last_name" do
+      invalid_user = build(:user, :without_last_name).save
+
+      expect(invalid_user).to eq(false)
+    end
+  end
+
+  describe("Custom methods") do
+    it "#full_name" do
+      user = create(:user)
+
+      expect(user.full_name).to eq("#{user.first_name} #{user.last_name}")
+    end
+  end
 end

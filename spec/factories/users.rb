@@ -20,6 +20,17 @@
 #
 FactoryBot.define do
   factory :user do
-    
+    first_name { "John" }
+    last_name { "Doe" }
+    email { "john.doe@mytaskmanagerapp.com" }
+    password { "12345678" }
+
+    trait :without_first_name do
+      first_name { nil }
+    end
+
+    trait :without_last_name do
+      last_name { nil }
+    end
   end
 end
