@@ -76,4 +76,4 @@ gem "devise", "~> 4.9"
 
 gem "simple_form", "~> 5.3"
 gem "pagy", "~> 9.0"
-gem "slim"
+gem "slim-rails"
