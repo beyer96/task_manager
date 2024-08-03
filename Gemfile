@@ -52,6 +52,9 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem "factory_bot_rails"
   gem "rspec-rails"
+
+  gem "ffaker"
+  gem "seedbank"
 end
 
 group :development do
