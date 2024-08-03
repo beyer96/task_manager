@@ -19,5 +19,6 @@
 class Task < ApplicationRecord
   validates :title, presence: true
   has_one_attached :attachment
-  belongs_to :user, :project
+  belongs_to :user
+  belongs_to :project
 end
