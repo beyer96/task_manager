@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: projects
+# Table name: tasks
 #
 #  id          :bigint           not null, primary key
 #  description :text
@@ -12,10 +12,17 @@
 #
 # Indexes
 #
-#  index_projects_on_user_id  (user_id)
+#  index_tasks_on_user_id  (user_id)
 #
-class Project < ApplicationRecord
-  validates :title, presence: true
-  has_one_attached :attachment
-  belongs_to :user
+FactoryBot.define do
+  factory :task do
+    title { "Task 1" }
+    description { "Description" }
+    is_done { false }
+    attachment { nil }
+
+    trait :without_title do
+      title { nil }
+    end
+  end
 end

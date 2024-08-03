@@ -1,0 +1,13 @@
+div id="#{dom_id task}"
+  p
+    strong Title:
+    =< task.title
+  p
+    strong Description:
+    =< task.description
+  p
+    strong Is done:
+    =< task.is_done
+  p
+    strong Attachment:
+    = link_to task.attachment.filename, task.attachment if task.attachment.attached?

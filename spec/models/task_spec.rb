@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: projects
+# Table name: tasks
 #
 #  id          :bigint           not null, primary key
 #  description :text
@@ -12,29 +12,29 @@
 #
 # Indexes
 #
-#  index_projects_on_user_id  (user_id)
+#  index_tasks_on_user_id  (user_id)
 #
 require 'rails_helper'
 
-RSpec.describe Project, type: :model do
+RSpec.describe Task, type: :model do
   let(:user) { create(:user) }
 
   describe("Validations") do
     it("validates presence of title") do
-      project = build(:project, :without_title, user:).save
+      task = build(:task, :without_title, user:).save
 
-      expect(project).to eq(false)
+      expect(task).to eq(false)
 
-      project = build(:project, user:).save
-      expect(project).to eq(true)
+      task = build(:task, user:).save
+      expect(task).to eq(true)
     end
   end
 
   describe("Associations") do
-    it("does not save project without user") do
-      project = build(:project).save
+    it("does not save task without user") do
+      task = build(:task).save
 
-      expect(project).to eq(false)
+      expect(task).to eq(false)
     end
   end
 end

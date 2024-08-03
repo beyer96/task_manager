@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "projects/show", type: :view do
+RSpec.describe "tasks/show", type: :view do
   before(:each) do
-    assign(:project, Project.create!(
+    assign(:task, Task.create!(
       title: "Title",
       description: "MyText",
       is_done: false,
