@@ -1,14 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "tasks/edit", type: :view do
-  let(:task) {
-    Task.create!(
-      title: "MyString",
-      description: "MyText",
-      is_done: false,
-      attachment: nil
-    )
-  }
+  let(:user) { create(:user) }
+  let(:task) { create(:task, user:) }
 
   before(:each) do
     assign(:task, task)
