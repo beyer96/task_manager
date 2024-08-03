@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
+DEFAULT_PASSWORD = "12345678"
+
 after :default do
   notify(__FILE__)
-
-  DEFAULT_PASSWORD = "12345678"
 
   User.find_or_create_by!(email: "info@mytaskmanagerapp.com") do |user|
     user.first_name = "John"
