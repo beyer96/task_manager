@@ -17,7 +17,6 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  let(:project) { build(:project) }
   let(:user) { create(:user) }
 
   describe("Validations") do
