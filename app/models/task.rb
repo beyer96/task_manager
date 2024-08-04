@@ -21,4 +21,6 @@ class Task < ApplicationRecord
   has_one_attached :attachment
   belongs_to :user
   belongs_to :project
+
+  scope :for_user, ->(user) { where(user:) }
 end
