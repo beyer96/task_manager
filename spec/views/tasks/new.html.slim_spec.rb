@@ -2,12 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "tasks/new", type: :view do
   before(:each) do
-    assign(:task, Task.new(
-      title: "MyString",
-      description: "MyText",
-      is_done: false,
-      attachment: nil
-    ))
+    assign(:task, build(:task))
   end
 
   it "renders new task form" do

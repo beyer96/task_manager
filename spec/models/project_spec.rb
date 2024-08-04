@@ -16,5 +16,34 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) { create(:user) }
+
+  describe("Validations") do
+    it("does not save without title") do
+      project = build(:project, :without_title, user:).save
+
+      expect(project).to eq(false)
+    end
+  end
+
+  describe("Associations") do
+    it("does not save without user") do
+      project = build(:project).save
+
+      expect(project).to eq(false)
+    end
+
+    it("does save with all needed associations") do
+      project = build(:project, user:).save
+
+      expect(project).to eq(true)
+    end
+
+    it("destroys associated tasks") do
+      project = create(:project, user:)
+
+      expect { create(:task, project:, user:) }.to change(Task, :count).from(0).to(1)
+      expect { project.destroy }.to change(Task, :count).from(1).to(0)
+    end
+  end
 end

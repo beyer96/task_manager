@@ -13,17 +13,13 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/projects", type: :request do
-  
-  # This should return the minimal set of attributes required to create a valid
-  # Project. As you add validations to Project, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:user) { create(:user) }
+  let(:valid_attributes) { attributes_for(:project, user:) }
+  let(:invalid_attributes) { attributes_for(:project, user:, title: nil) }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  before(:each) do
+    sign_in user
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -88,15 +84,14 @@ RSpec.describe "/projects", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:different_title) { "Different title" }
+      let(:new_attributes) { attributes_for(:project, user:, title: different_title) }
 
       it "updates the requested project" do
         project = Project.create! valid_attributes
         patch project_url(project), params: { project: new_attributes }
         project.reload
-        skip("Add assertions for updated state")
+        expect(project.title).to eq(different_title)
       end
 
       it "redirects to the project" do

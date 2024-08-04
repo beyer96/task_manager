@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "tasks/index", type: :view do
-  let(:user) { build(:user) }
+  let(:user) { create(:user) }
+  let(:project) { create(:project, user:) }
 
   before(:each) do
-    @tasks = create_list(:task, 2, user:)
+    @tasks = create_list(:task, 2, user:, project:)
   end
 
   it "renders a list of tasks" do

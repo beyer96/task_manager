@@ -15,7 +15,11 @@
 #
 FactoryBot.define do
   factory :project do
-    title { "MyString" }
+    title { "Project" }
     position { 1 }
+
+    trait :without_title do
+      title { nil }
+    end
   end
 end

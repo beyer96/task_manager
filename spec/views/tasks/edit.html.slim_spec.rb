@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "tasks/edit", type: :view do
   let(:user) { create(:user) }
-  let(:task) { create(:task, user:) }
+  let(:project) { create(:project, user:) }
+  let(:task) { create(:task, user:, project:) }
 
   before(:each) do
     assign(:task, task)

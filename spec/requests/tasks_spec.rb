@@ -14,7 +14,8 @@ require 'rails_helper'
 
 RSpec.describe "/tasks", type: :request do
   let(:user) { create(:user) }
-  let(:valid_attributes) { attributes_for(:task, user:) }
+  let(:project) { create(:project, user:) }
+  let(:valid_attributes) { attributes_for(:task, user:, project_id: project.id) }
   let(:invalid_attributes) { attributes_for(:task, :without_title, user:) }
 
   before(:each) do

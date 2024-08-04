@@ -1,12 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "projects/edit", type: :view do
-  let(:project) {
-    Project.create!(
-      title: "MyString",
-      position: 1
-    )
-  }
+  let(:user) { create(:user) }
+  let(:project) { create(:project, user:) }
 
   before(:each) do
     assign(:project, project)
