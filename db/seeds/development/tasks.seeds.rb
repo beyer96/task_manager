@@ -6,7 +6,7 @@ after "development:projects" do
   User.count.times.with_index(1) do |_, user_id|
     User.find(user_id).projects.each do |project|
       3.times.with_index(1) do |_, index|
-        Task.create_or_find_by!(id: index) do |task|
+        Task.create_or_find_by!(project_id: project.id) do |task|
           task.title = "Task n.#{index}"
           task.description = FFaker::Lorem.paragraph
           task.is_done = FFaker::Boolean.random
