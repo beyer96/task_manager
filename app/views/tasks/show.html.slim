@@ -8,5 +8,5 @@ h1.mt-3 = @task.title
       == render @task
       .d-inline-flex.gap-3
         = link_to "Upravit", edit_task_path(@task), class: "btn btn-warning"
-        = link_to "Odstranit úkol", task_path(@task), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"
+        = link_to "Smazat", task_path(@task), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"
 

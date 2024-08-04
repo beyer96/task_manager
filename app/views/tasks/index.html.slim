@@ -18,4 +18,8 @@ table.table.table-hover.text-center.align-middle
         td.text-nowrap = task.title
         td = task.description
         td = link_to task.project.title, project_path(task.project)
-        td = link_to "Detail", task_path(task), class: "btn btn-secondary"
+        td 
+          .btn-group
+            = link_to "Detail", task_path(task), class: "btn btn-secondary"
+            = link_to "Upravit", edit_task_path(task), class: "btn btn-warning"
+            = link_to "Smazat", task_path(task), data: { turbo_method: :delete, turbo_confirm: "Opravdu chcete smazat úkol?" }, class: "btn btn-danger"
