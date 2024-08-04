@@ -20,7 +20,7 @@ class Task < ApplicationRecord
   validates :title, presence: true
   has_one_attached :attachment
   belongs_to :user
-  belongs_to :project
+  belongs_to :project, counter_cache: true
 
   scope :for_user, ->(user) { where(user:) }
 end
