@@ -17,14 +17,4 @@ table.table.table-hover.text-center.align-middle
       th
   tbody
     - @tasks.each do |task|
-      tr class="#{task.is_done ? 'table-success' : 'table-secondary'}"
-        td
-          i.bi class="#{task.is_done ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-secondary'}"
-        td.text-nowrap = task.title
-        td = task.description
-        td = link_to task.project.title, project_path(task.project)
-        td 
-          .btn-group
-            = link_to "Detail", task_path(task), class: "btn btn-secondary"
-            = link_to "Upravit", edit_task_path(task), class: "btn btn-warning"
-            = link_to "Smazat", task_path(task), data: { turbo_method: :delete, turbo_confirm: "Opravdu chcete smazat úkol?" }, class: "btn btn-danger"
+      = render partial: "table_row", locals: { task: }
