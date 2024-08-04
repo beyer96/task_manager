@@ -6,8 +6,9 @@ div id="#{dom_id task}"
     strong Description:
     =< task.description
   p
-    strong Is done:
-    =< task.is_done
+    strong.me-2 Is done:
+    = link_to toggle_done_task_path(task), data: { turbo_method: :put, bs_toggle: :tooltip, bs_title: "Označit jako #{task.is_done ? "nehotový" : "hotový"}" } do
+      i.bi class="#{task.is_done ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-secondary'}"
   p
     strong Attachment:
     = link_to task.attachment.filename, task.attachment if task.attachment.attached?

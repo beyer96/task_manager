@@ -66,7 +66,7 @@ class TasksController < ApplicationController
       if @task.toggle!(:is_done)
         format.turbo_stream do
           render turbo_stream: turbo_stream.replace(@task,
-                                                    partial: "table_row",
+                                                    partial: params[:partial] || "task",
                                                     locals: { task: @task })
         end
         format.html { redirect_to @task, notice: "'Done' status successfully updated." }

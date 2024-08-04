@@ -1,6 +1,6 @@
 tr id=dom_id(task) class="#{task.is_done ? 'table-success' : 'table-secondary'}"
   td
-    = link_to toggle_done_task_path(task), data: { turbo_method: :put, bs_toggle: :tooltip, bs_title: "Označit jako #{task.is_done ? "nehotový" : "hotový"}" } do
+    = link_to toggle_done_task_path(task, partial: "table_row"), data: { turbo_method: :put, bs_toggle: :tooltip, bs_title: "Označit jako #{task.is_done ? "nehotový" : "hotový"}" } do
       i.bi class="#{task.is_done ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-secondary'}"
   td.text-nowrap = task.title
   td = task.description
