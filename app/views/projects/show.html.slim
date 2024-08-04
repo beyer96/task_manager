@@ -2,6 +2,8 @@ p style="color: green" = notice
 
 == render @project
 
+= link_to "Přidat úkol", new_task_path(params: { project: @project.id })
+
 div
   => link_to "Edit this project", edit_project_path(@project)
   '|
