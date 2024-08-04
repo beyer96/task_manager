@@ -2,7 +2,7 @@
   .container-fluid
     = link_to("Task manager", root_path, class: "navbar-brand")
     ul.navbar-nav.d-flex.gap-3.flex-row
-      li.nav-item = link_to("Tasky", tasks_path, class: "nav-link")
+      li.nav-item = link_to("Projekty", projects_path, class: "nav-link")
 
     ul.navbar-nav.ms-auto.d-flex.gap-3.flex-row
       - if current_user
