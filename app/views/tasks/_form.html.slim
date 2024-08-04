@@ -6,25 +6,27 @@
         - @task.errors.each do |error|
           li = error.full_message
 
-  div
-    = f.label :project_id
-    = f.input_field :project_id, as: :select, collection: @projects, required: true, disabled: !params[:project].nil?, selected: params[:project], include_blank: true
+  - if controller.action_name == "new"
+    .input-group.mb-3
+      = f.label :project_id, class: "input-group-text"
+      = f.input_field :project_id, as: :select, collection: @projects, required: true, selected: params[:project],
+                      include_blank: true, class: "#{'pe-none disabled' if !params[:project].nil?}"
 
-  div
-    = f.label :title, style: "display: block"
+  .input-group.mb-3
+    = f.label :title, class: "input-group-text"
     = f.input_field :title
 
-  div
-    = f.label :description, style: "display: block"
-    = f.input_field :description
+  .input-group.mb-3
+    = f.label :description, class: "input-group-text"
+    = f.input_field :description, resize: false
 
-  div
-    = f.label :is_done, style: "display: block"
+  .input-group.mb-3
+    = f.label :is_done, class: "input-group-text"
     = f.input_field :is_done
 
-  div
-    = f.label :attachment, style: "display: block"
+  .input-group.mb-3
+    = f.label :attachment, class: "input-group-text"
     = f.input_field :attachment
 
   div
-    = f.submit
+    = f.submit "Potvrdit", class: "btn btn-success"

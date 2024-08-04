@@ -1,8 +1,6 @@
-h1 New task
-
-== render "form", task: @task
-
-br
-
-div
-  = link_to "Back to tasks", tasks_path
+.card.mt-3
+  .card-header.d-flex.justify-content-between.align-items-center
+    h1 = "Nový úkol"
+    = link_to "Zpět", params[:project].nil? ? tasks_path : project_path(params[:project]), class: "btn btn-danger"
+  .card-body
+    == render "form", task: @task
