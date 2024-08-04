@@ -20,23 +20,36 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
   let(:user) { create(:user) }
+  let(:project) { create(:project, user:) }
 
   describe("Validations") do
     it("validates presence of title") do
-      task = build(:task, :without_title, user:).save
+      task = build(:task, :without_title, user:, project:).save
 
       expect(task).to eq(false)
 
-      task = build(:task, user:).save
+      task = build(:task, user:, project:).save
       expect(task).to eq(true)
     end
   end
 
   describe("Associations") do
     it("does not save task without user") do
-      task = build(:task).save
+      task = build(:task, project:).save
 
       expect(task).to eq(false)
+    end
+
+    it("does not save task without project") do
+      task = build(:task, user:).save
+
+      expect(task).to eq(false)
+    end
+
+    it("saves task with all needed associations") do
+      task = build(:task, user:, project:).save
+
+      expect(task).to eq(true)
     end
   end
 end
