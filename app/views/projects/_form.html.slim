@@ -1,18 +1,18 @@
-= form_with(model: project) do |form|
-  - if project.errors.any?
+= simple_form_for @project do |f|
+  - if @project.errors.any?
     div style="color: red"
-      h2 = "#{pluralize(project.errors.count, "error")} prohibited this project from being saved:"
+      h2 = "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
       ul
-        - project.errors.each do |error|
+        - @project.errors.each do |error|
           li = error.full_message
 
   div
-    = form.label :title, style: "display: block"
-    = form.text_field :title
+    = f.label :title, style: "display: block"
+    = f.text_field :title
 
   div
-    = form.label :position, style: "display: block"
-    = form.number_field :position
+    = f.label :position, style: "display: block"
+    = f.number_field :position
 
   div
-    = form.submit
+    = f.submit
