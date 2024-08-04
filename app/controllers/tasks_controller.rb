@@ -69,7 +69,7 @@ class TasksController < ApplicationController
                                                     partial: params[:partial] || "task",
                                                     locals: { task: @task })
         end
-        format.html { redirect_to @task, notice: "'Done' status successfully updated." }
+        format.html { redirect_to url_for, notice: "'Done' status successfully updated." }
       end
     end
   end
