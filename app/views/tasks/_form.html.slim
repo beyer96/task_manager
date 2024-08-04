@@ -1,26 +1,30 @@
-= form_with(model: task) do |form|
-  - if task.errors.any?
+= simple_form_for @task do |f|
+  - if @task.errors.any?
     div style="color: red"
-      h2 = "#{pluralize(task.errors.count, "error")} prohibited this task from being saved:"
+      h2 = "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
       ul
-        - task.errors.each do |error|
+        - @task.errors.each do |error|
           li = error.full_message
 
   div
-    = form.label :title, style: "display: block"
-    = form.text_field :title
+    = f.label :project_id
+    = f.input_field :project_id, as: :select, collection: @projects, required: true, disabled: !params[:project].nil?, selected: params[:project], include_blank: true
 
   div
-    = form.label :description, style: "display: block"
-    = form.text_area :description
+    = f.label :title, style: "display: block"
+    = f.input_field :title
 
   div
-    = form.label :is_done, style: "display: block"
-    = form.check_box :is_done
+    = f.label :description, style: "display: block"
+    = f.input_field :description
 
   div
-    = form.label :attachment, style: "display: block"
-    = form.file_field :attachment
+    = f.label :is_done, style: "display: block"
+    = f.input_field :is_done
 
   div
-    = form.submit
+    = f.label :attachment, style: "display: block"
+    = f.input_field :attachment
+
+  div
+    = f.submit
