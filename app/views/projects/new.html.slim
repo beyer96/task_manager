@@ -1,8 +1,6 @@
-h1 New project
-
-== render "form", project: @project
-
-br
-
-div
-  = link_to "Back to projects", projects_path
+.card.mt-3
+  .card-header.d-flex.justify-content-between.align-items-center
+    h1 = "Nový projekt"
+    = link_to "Zpět", projects_path, class: "btn btn-danger"
+  .card-body
+    == render "form", project: @project

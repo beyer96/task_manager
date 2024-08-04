@@ -1,10 +1,7 @@
-h1 Editing project
+.card.mt-3
+  .card-header.d-flex.justify-content-between.align-items-center
+    h1 = "Upravit projekt: #{@project.title}"
+    = link_to "Zpět", @project, class: "btn btn-danger"
+  .card-body
+    == render "form", project: @project
 
-== render "form", project: @project
-
-br
-
-div
-  => link_to "Show this project", @project
-  '|
-  =< link_to "Back to projects", projects_path

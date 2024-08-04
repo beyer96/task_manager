@@ -6,13 +6,13 @@
         - @project.errors.each do |error|
           li = error.full_message
 
-  div
-    = f.label :title, style: "display: block"
+  .input-group.mb-3
+    = f.label :title, class: "input-group-text"
     = f.text_field :title
 
-  div
-    = f.label :position, style: "display: block"
+  .input-group.mb-3
+    = f.label :position, class: "input-group-text"
     = f.number_field :position
 
-  div
-    = f.submit
+  .input-group.mb-3
+    = f.submit "Potvrdit", class: "btn btn-success"
