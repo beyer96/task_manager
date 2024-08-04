@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     @tasks = Task.for_user(current_user).includes(:project)
+    @tasks = @tasks.is_done(params[:done]) if params[:done]
   end
 
   # GET /tasks/1 or /tasks/1.json

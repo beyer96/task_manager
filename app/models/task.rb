@@ -23,4 +23,5 @@ class Task < ApplicationRecord
   belongs_to :project, counter_cache: true
 
   scope :for_user, ->(user) { where(user:) }
+  scope :is_done, ->(boolean) { where(is_done: boolean) }
 end

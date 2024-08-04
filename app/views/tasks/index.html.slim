@@ -2,6 +2,11 @@
   h1 = "Úkoly"
   = link_to "Přidat nový úkol", new_task_path, class: "btn btn-success"
 
+.btn-group.my-3
+  - is_done = params[:done]
+  = link_to("Všechny", tasks_path, class: "btn btn-#{is_done.nil? ? 'primary' : 'outline-secondary'}")
+  = link_to("Hotové", tasks_path(done: true), class: "btn btn-#{is_done === 'true' ? 'primary' : 'outline-secondary'}")
+  = link_to("Nehotové", tasks_path(done: false), class: "btn btn-#{is_done === 'false' ? 'primary' : 'outline-secondary'}")
 table.table.table-hover.text-center.align-middle
   thead
     tr
