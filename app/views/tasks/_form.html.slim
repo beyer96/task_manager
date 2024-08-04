@@ -7,10 +7,9 @@
           li = error.full_message
 
   - if controller.action_name == "new"
-    .input-group.mb-3
-      = f.label :project_id, class: "input-group-text"
-      = f.input_field :project_id, as: :select, collection: @projects, required: true, selected: params[:project],
-                      include_blank: true, class: "#{'pe-none disabled' if !params[:project].nil?}"
+      = f.association :project, as: :select, collection: @projects, required: true, selected: params[:project],
+                      include_blank: true, class: "#{'pe-none disabled' if !params[:project].nil?}",
+                      label_html: { class: "input-group-text" }, wrapper_html: { class: "input-group mb-3" }
 
   .input-group.mb-3
     = f.label :title, class: "input-group-text"
