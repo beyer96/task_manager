@@ -17,4 +17,6 @@ class Project < ApplicationRecord
   validates :title, :position, presence: true
   has_many :tasks, dependent: :destroy
   belongs_to :user
+
+  scope :for_user, ->(user) { where(user:) }
 end
