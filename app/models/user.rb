@@ -27,6 +27,7 @@ class User < ApplicationRecord
 
   has_many :tasks, dependent: :destroy
   has_many :projects, dependent: :destroy
+  has_many :tags, dependent: :destroy
 
   def full_name
     "#{first_name} #{last_name}"

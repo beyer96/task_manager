@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags, except: %i[show]
   resources :projects
   resources :tasks do
     member do
