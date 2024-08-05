@@ -9,7 +9,7 @@ h1.mt-3 = @project.title
       .d-inline-flex.gap-3
         = link_to "Přidat úkol", new_task_path(params: { project: @project.id }), class: "btn btn-success"
         = link_to "Upravit", edit_project_path(@project), class: "btn btn-warning"
-        = link_to "Odstranit projekt", project_path(@project), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"
+        = link_to "Odstranit projekt", project_path(@project), data: { turbo_method: :delete, turbo_confirm: "Opravdu chcete smazat projekt?" }, class: "btn btn-danger"
 
     h2 = "Seznam úkolů"
     table.table.table-hover.text-center.align-middle
