@@ -6,6 +6,10 @@ tr id=dom_id(task) class="#{task.is_done ? 'table-success' : 'table-secondary'}"
   td = task.description
   td = link_to task.project.title, project_path(task.project)
   td
+    .d-flex.flex-nowrap
+      - task.tags.each do |tag|
+        span.badge.bg-secondary.ms-2 = tag.title
+  td
     .btn-group
       = link_to "Detail", task_path(task), class: "btn btn-secondary"
       = link_to "Upravit", edit_task_path(task), class: "btn btn-warning"

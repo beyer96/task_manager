@@ -12,3 +12,8 @@ div id="#{dom_id task}"
   p
     strong Attachment:
     = link_to task.attachment.filename, task.attachment if task.attachment.attached?
+
+  p
+    strong Tags:
+    - task.tags.each do |tag|
+      span.badge.bg-secondary.ms-2 = tag.title

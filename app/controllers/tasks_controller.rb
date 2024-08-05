@@ -16,10 +16,12 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @projects = Project.for_user(current_user)
+    @tags = Tag.for_user(current_user)
   end
 
   # GET /tasks/1/edit
   def edit
+    @tags = Tag.for_user(current_user)
   end
 
   # POST /tasks or /tasks.json
@@ -82,6 +84,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :description, :is_done, :attachment, :project_id)
+      params.require(:task).permit(:title, :description, :is_done, :attachment, :project_id, tag_ids: [])
     end
 end

@@ -27,5 +27,8 @@
     = f.label :attachment, class: "input-group-text"
     = f.input_field :attachment
 
+  = f.association :tags, as: :select, collection: @tags, input_html: { class: "form-select" }, wrapper_html: { class: "input-group mb-3" },
+                  label_html: { class: "input-group-text"}
+
   div
     = f.submit "Potvrdit", class: "btn btn-success"
