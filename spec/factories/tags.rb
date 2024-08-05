@@ -18,7 +18,7 @@
 #
 FactoryBot.define do
   factory :tag do
-    title { "MyString" }
+    title { "My tag" }
     user { nil }
   end
 end
