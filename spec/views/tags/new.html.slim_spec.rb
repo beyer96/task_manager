@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "tags/new", type: :view do
+  let(:user) { create(:user) }
+
   before(:each) do
-    assign(:tag, Tag.new(
-      title: "MyString",
-      user: nil
-    ))
+    sign_in user
+    assign(:tag, build(:tag))
   end
 
   it "renders new tag form" do
@@ -15,7 +15,7 @@ RSpec.describe "tags/new", type: :view do
 
       assert_select "input[name=?]", "tag[title]"
 
-      assert_select "input[name=?]", "tag[user_id]"
+      assert_select "select[name=?]", "tag[user_id]"
     end
   end
 end

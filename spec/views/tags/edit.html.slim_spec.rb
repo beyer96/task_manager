@@ -1,14 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "tags/edit", type: :view do
-  let(:tag) {
-    Tag.create!(
-      title: "MyString",
-      user: nil
-    )
-  }
+  let(:user) { create(:user) }
+  let(:tag) { create(:tag, user:) }
 
   before(:each) do
+    sign_in user
     assign(:tag, tag)
   end
 
@@ -19,7 +16,7 @@ RSpec.describe "tags/edit", type: :view do
 
       assert_select "input[name=?]", "tag[title]"
 
-      assert_select "input[name=?]", "tag[user_id]"
+      assert_select "select[name=?]", "tag[user_id]"
     end
   end
 end

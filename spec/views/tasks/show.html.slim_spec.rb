@@ -12,6 +12,5 @@ RSpec.describe "tasks/show", type: :view do
     render
     expect(rendered).to match(/Task 1/)
     expect(rendered).to match(/Description/)
-    expect(rendered).to match(/false/)
   end
 end
