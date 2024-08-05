@@ -15,8 +15,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (tag_id => tags.id)
-#  fk_rails_...  (task_id => tasks.id)
+#  fk_rails_...  (tag_id => tags.id) ON DELETE => cascade
+#  fk_rails_...  (task_id => tasks.id) ON DELETE => cascade
 #
 FactoryBot.define do
   factory :task_tag do
