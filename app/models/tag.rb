@@ -18,6 +18,8 @@
 #
 class Tag < ApplicationRecord
   validates :title, presence: true
+  has_many :task_tags
+  has_many :tasks, through: :task_tags
   belongs_to :user
 
   scope :for_user, ->(user) { where(user:) }
