@@ -5,11 +5,10 @@
       ul
         - @task.errors.each do |error|
           li = error.full_message
-
-  - if controller.action_name == "new"
-      = f.association :project, as: :select, collection: @projects, required: true, selected: params[:project],
-                      include_blank: true, class: "#{'pe-none disabled' if !params[:project].nil?}",
-                      label_html: { class: "input-group-text" }, wrapper_html: { class: "input-group mb-3" }
+  - if controller.action_name == "new" || controller.action_name == "create"
+    = f.association :project, as: :select, collection: Project.for_user(current_user), required: true, selected: params[:project],
+                    include_blank: true, class: "#{'pe-none disabled' if !params[:project].nil?}",
+                    label_html: { class: "input-group-text" }, wrapper_html: { class: "input-group mb-3" }
 
   .input-group.mb-3
     = f.label :title, class: "input-group-text"
@@ -27,7 +26,7 @@
     = f.label :attachment, class: "input-group-text"
     = f.input_field :attachment
 
-  = f.association :tags, as: :select, collection: @tags, input_html: { class: "form-select" }, wrapper_html: { class: "input-group mb-3" },
+  = f.association :tags, as: :select, collection: Tag.for_user(current_user), input_html: { class: "form-select" }, wrapper_html: { class: "input-group mb-3" },
                   label_html: { class: "input-group-text"}
 
   div

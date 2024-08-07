@@ -1,4 +1,12 @@
 cs:
+  errors:
+    attributes:
+      title:
+        blank: Název je povinné pole
+      project:
+        required: K novému úkolu musí být přiřazen projekt
+      position:
+        blank: Pozice je povinné pole
   sign_in: Přihlásit
   sign_out: Odhlásit
   sign_up: Registrovat
