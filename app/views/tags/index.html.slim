@@ -3,7 +3,7 @@
     h1 = "Tagy"
   .col-4
     . data-controller="search"
-      form action=search_tags_path method="post" data-action="submit->search#clearSearchInput"
+      form action=search_tags_path method="post" data-action="submit->search#replaceState"
         .input-group.justify-content-center
           input name="query" type="text" placeholder="Hledat tag" data-search-target="input"
           button.btn.btn-primary type="submit" data-bs-toggle="tooltip" data-bs-title="Hledat"
