@@ -12,5 +12,8 @@
           td = project.position
           td = highlight(project.title, @query)
           td = project.tasks_count
-          td.text-end = link_to "Přejit na projekt", project, class: "btn btn-primary"
+          td.text-end
+            .btn-group
+              = link_to "Přejit na projekt", project, class: "btn btn-primary"
+              = link_to "Odstranit projekt", project_path(project), data: { turbo_method: :delete, turbo_confirm: "Opravdu chcete smazat projekt?" }, class: "btn btn-danger"
   = render partial: "shared/pagy"
