@@ -1,12 +1,14 @@
-table#index-table.table.table-hover.text-center.align-middle
-  thead
-    tr
-      th = "Splněno"
-      th = "Název"
-      th = "Popis"
-      th = "Projekt"
-      th = "Tagy"
-      th
-  tbody
-    - @tasks.each do |task|
-      = render partial: "table_row", locals: { task: }
+#index-table
+  table#index-table.table.table-hover.text-center.align-middle
+    thead
+      tr
+        th = "Splněno"
+        th = "Název"
+        th = "Popis"
+        th = "Projekt"
+        th = "Tagy"
+        th
+    tbody
+      - @tasks.each do |task|
+        = render partial: "table_row", locals: { task: }
+  = render partial: "shared/pagy"

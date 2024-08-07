@@ -4,7 +4,8 @@ class TagsController < ApplicationController
 
   # GET /tags or /tags.json
   def index
-    @tags = Tag.where("title ILIKE ?", "%#{params[:query]}%").for_user(current_user)
+    @query = params[:query]
+    @tags = Tag.where("title ILIKE ?", "%#{@query}%").for_user(current_user)
     @pagy, @tags = pagy(@tags)
   end
 
@@ -58,6 +59,7 @@ class TagsController < ApplicationController
   def search
     @query = params[:query]
     @tags = Tag.where("title ILIKE ?", "%#{@query}%").for_user(current_user)
+    @pagy, @tags = pagy(@tags, request_path: tags_path, params: { query: @query })
 
     respond_to do |format|
       format.turbo_stream do

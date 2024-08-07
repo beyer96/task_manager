@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.for_user(current_user).where("title ILIKE ?", "%#{params[:query]}%")
+    @query = params[:query]
+    @projects = Project.for_user(current_user).where("title ILIKE ?", "%#{@query}%")
     @pagy, @projects = pagy(@projects)
   end
 
@@ -63,6 +64,7 @@ class ProjectsController < ApplicationController
   def search
     @query = params[:query]
     @projects = Project.for_user(current_user).where("title ILIKE ?", "%#{@query}%")
+    @pagy, @projects = pagy(@projects, request_path: projects_path, params: { query: @query })
 
     respond_to do |format|
       format.turbo_stream do

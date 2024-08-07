@@ -4,7 +4,8 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.where("title ILIKE ?", "%#{params[:query]}%").for_user(current_user).includes(:project, :tags)
+    @query = params[:query]
+    @tasks = Task.where("title ILIKE ?", "%#{@query}%").for_user(current_user).includes(:project, :tags)
     @tasks = @tasks.is_done(params[:done]) if params[:done]
     @pagy, @tasks = pagy(@tasks)
   end
@@ -80,6 +81,7 @@ class TasksController < ApplicationController
   def search
     @query = params[:query]
     @tasks = Task.where("title ILIKE ?", "%#{@query}%").for_user(current_user).includes(:project, :tags)
+    @pagy, @tasks = pagy(@tasks, request_path: tasks_path, params: { query: @query })
 
     respond_to do |format|
       format.turbo_stream do

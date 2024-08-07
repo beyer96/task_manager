@@ -18,4 +18,3 @@
   = link_to("Nehotové", tasks_path(done: false), class: "btn btn-#{is_done === 'false' ? 'primary' : 'outline-secondary'}")
 
 = render partial: "index_table", locals: { tasks: @tasks }
-= render partial: "shared/pagy"
