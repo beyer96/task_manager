@@ -12,10 +12,12 @@
 #
 # Indexes
 #
-#  index_projects_on_user_id  (user_id)
+#  index_projects_on_position_and_user_id  (position,user_id) UNIQUE
+#  index_projects_on_user_id               (user_id)
 #
 class Project < ApplicationRecord
   validates :title, :position, presence: true
+  validates :position, uniqueness: { scope: :user_id }
   has_many :tasks, dependent: :destroy
   belongs_to :user
 

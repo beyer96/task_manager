@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_05_213732) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_07_214255) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_05_213732) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.integer "tasks_count", default: 0
+    t.index ["position", "user_id"], name: "index_projects_on_position_and_user_id", unique: true
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 

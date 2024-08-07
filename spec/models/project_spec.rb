@@ -12,7 +12,8 @@
 #
 # Indexes
 #
-#  index_projects_on_user_id  (user_id)
+#  index_projects_on_position_and_user_id  (position,user_id) UNIQUE
+#  index_projects_on_user_id               (user_id)
 #
 require 'rails_helper'
 
