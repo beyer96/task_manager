@@ -77,15 +77,14 @@ class TasksController < ApplicationController
   end
 
   def search
-    query = params[:query]
-
-    @tasks = Task.where("title ILIKE ?", "%#{query}%").for_user(current_user).includes(:project, :tags)
+    @query = params[:query]
+    @tasks = Task.where("title ILIKE ?", "%#{@query}%").for_user(current_user).includes(:project, :tags)
 
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace("index-table", partial: "index_table")
       end
-      format.html { redirect_to tasks_url(query:) }
+      format.html { redirect_to tasks_url(query: @query) }
     end
   end
 

@@ -55,15 +55,14 @@ class TagsController < ApplicationController
   end
 
   def search
-    query = params[:query]
-
-    @tags = Tag.where("title ILIKE ?", "%#{query}%").for_user(current_user)
+    @query = params[:query]
+    @tags = Tag.where("title ILIKE ?", "%#{@query}%").for_user(current_user)
 
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace("index-table", partial: "index_table")
       end
-      format.html { redirect_to tags_url(query:) }
+      format.html { redirect_to tags_url(query: @query) }
     end
   end
 

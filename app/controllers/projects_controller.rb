@@ -60,15 +60,14 @@ class ProjectsController < ApplicationController
   end
 
   def search
-    query = params[:query]
-
-    @projects = Project.for_user(current_user).where("title ILIKE ?", "%#{query}%")
+    @query = params[:query]
+    @projects = Project.for_user(current_user).where("title ILIKE ?", "%#{@query}%")
 
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace("index-table", partial: "index_table")
       end
-      format.html { redirect_to projects_url(query:) }
+      format.html { redirect_to projects_url(query: @query) }
     end
   end
 
