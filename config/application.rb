@@ -20,6 +20,9 @@ module TaskManager
       g.template_engine = :slim
     end
 
+    config.i18n.available_locales = %i[en cs]
+    config.i18n.default_locale = :cs
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
