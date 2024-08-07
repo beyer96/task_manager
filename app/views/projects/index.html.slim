@@ -1,18 +1,13 @@
-.d-flex.justify-content-between.align-items-center
-  h1 = "Projekty"
-  = link_to "Přidat nový projekt", new_project_path, class: "btn btn-success"
+.row
+  .col-4
+    h1 = "Projekty"
+  .col-4
+    . data-controller="search"
+      form action=search_projects_path method="post" data-action="submit->search#clearSearchInput"
+        .input-group.justify-content-center
+          input name="query" type="text" placeholder="Hledat projekt" data-search-target="input"
+          button.btn.btn-primary type="submit" data-bs-toggle="tooltip" data-bs-title="Hledat"
+            i.bi.bi-search
+  .col-4.text-end = link_to "Přidat nový projekt", new_project_path, class: "btn btn-success"
 
-table.table.table-striped.table-hover.text-center.align-middle
-  thead
-    tr
-      th = "Pozice"
-      th = "Název"
-      th = "Počet úkolů"
-      th
-  tbody
-    - @projects.each do |project|
-      tr
-        td = project.position
-        td = project.title
-        td = project.tasks_count
-        td.text-end = link_to "Přejit na projekt", project, class: "btn btn-primary"
+= render partial: "index_table", locals: { projects: @projects }

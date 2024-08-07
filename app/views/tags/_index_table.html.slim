@@ -1,0 +1,13 @@
+table#index-table.table.table-hover.text-center.align-middle
+  thead
+    tr
+      th = "Název"
+      th
+  tbody
+    - @tags.each do |tag|
+      tr
+        td.text-nowrap = tag.title
+        td.text-end
+          .btn-group
+            = link_to "Upravit", edit_tag_path(tag), class: "btn btn-warning"
+            = link_to "Smazat", tag_path(tag), data: { turbo_method: :delete, turbo_confirm: "Opravdu chcete smazat tag?" }, class: "btn btn-danger"

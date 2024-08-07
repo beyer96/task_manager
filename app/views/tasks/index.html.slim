@@ -1,21 +1,21 @@
-.d-flex.justify-content-between.align-items-center
-  h1 = "Úkoly"
-  = link_to "Přidat nový úkol", new_task_path, class: "btn btn-success"
+.row
+  .col-4
+    h1 = "Úkoly"
+  .col-4
+    . data-controller="search"
+      form action=search_tasks_path method="post" data-action="submit->search#clearSearchInput"
+        .input-group.justify-content-center
+          input name="query" type="text" placeholder="Hledat task" data-search-target="input"
+          button.btn.btn-primary type="submit" data-bs-toggle="tooltip" data-bs-title="Hledat"
+            i.bi.bi-search
+  .col-4.text-end
+    = link_to "Přidat nový úkol", new_task_path, class: "btn btn-success"
 
 .btn-group.my-3
   - is_done = params[:done]
   = link_to("Všechny", tasks_path, class: "btn btn-#{is_done.nil? ? 'primary' : 'outline-secondary'}")
   = link_to("Hotové", tasks_path(done: true), class: "btn btn-#{is_done === 'true' ? 'primary' : 'outline-secondary'}")
   = link_to("Nehotové", tasks_path(done: false), class: "btn btn-#{is_done === 'false' ? 'primary' : 'outline-secondary'}")
-table.table.table-hover.text-center.align-middle
-  thead
-    tr
-      th = "Splněno"
-      th = "Název"
-      th = "Popis"
-      th = "Projekt"
-      th = "Tagy"
-      th
-  tbody
-    - @tasks.each do |task|
-      = render partial: "table_row", locals: { task: }
+
+= render partial: "index_table", locals: { tasks: @tasks }
+

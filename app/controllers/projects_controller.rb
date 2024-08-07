@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.for_user(current_user)
+    @projects = Project.for_user(current_user).where("title ILIKE ?", "%#{params[:query]}%")
   end
 
   # GET /projects/1 or /projects/1.json
@@ -56,6 +56,19 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to projects_url, notice: "Project was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def search
+    query = params[:query]
+
+    @projects = Project.for_user(current_user).where("title ILIKE ?", "%#{query}%")
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("index-table", partial: "index_table")
+      end
+      format.html { redirect_to projects_url(query:) }
     end
   end
 

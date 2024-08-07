@@ -4,7 +4,7 @@ class TagsController < ApplicationController
 
   # GET /tags or /tags.json
   def index
-    @tags = Tag.for_user(current_user)
+    @tags = Tag.where("title ILIKE ?", "%#{params[:query]}%").for_user(current_user)
   end
 
   # GET /tags/new
@@ -51,6 +51,19 @@ class TagsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tags_url, notice: "Tag was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def search
+    query = params[:query]
+
+    @tags = Tag.where("title ILIKE ?", "%#{query}%").for_user(current_user)
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("index-table", partial: "index_table")
+      end
+      format.html { redirect_to tags_url(query:) }
     end
   end
 

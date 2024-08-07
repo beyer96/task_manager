@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.for_user(current_user).includes(:project, :tags)
+    @tasks = Task.where("title ILIKE ?", "%#{params[:query]}%").for_user(current_user).includes(:project, :tags)
     @tasks = @tasks.is_done(params[:done]) if params[:done]
   end
 
@@ -73,6 +73,19 @@ class TasksController < ApplicationController
         end
         format.html { redirect_to url_for, notice: "'Done' status successfully updated." }
       end
+    end
+  end
+
+  def search
+    query = params[:query]
+
+    @tasks = Task.where("title ILIKE ?", "%#{query}%").for_user(current_user).includes(:project, :tags)
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("index-table", partial: "index_table")
+      end
+      format.html { redirect_to tasks_url(query:) }
     end
   end
 
