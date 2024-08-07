@@ -2,17 +2,17 @@
   .container-fluid
     = link_to("Task manager", root_path, class: "navbar-brand")
     ul.navbar-nav.d-flex.gap-3.flex-row
-      li.nav-item = link_to("Projekty", projects_path, class: "nav-link")
-      li.nav-item = link_to("Úkoly", tasks_path, class: "nav-link")
-      li.nav-item = link_to("Tagy", tags_path, class: "nav-link")
+      li.nav-item = link_to(t("controllers.projects"), projects_path, class: "nav-link")
+      li.nav-item = link_to(t("controllers.tasks"), tasks_path, class: "nav-link")
+      li.nav-item = link_to(t("controllers.tags"), tags_path, class: "nav-link")
 
     ul.navbar-nav.ms-auto.d-flex.gap-3.flex-row
       - if current_user
         li.nav-item
-          = link_to(edit_user_registration_path, class: "nav-link", data: { bs_toggle: :tooltip, bs_title: "Přejít do nastavení účtu"}) do
+          = link_to(edit_user_registration_path, class: "nav-link", data: { bs_toggle: :tooltip, bs_title: t("go_to_user_settings")}) do
             i.bi.bi-person.me-1
             = current_user.full_name
-        li.nav-item = link_to("Odhlásit", destroy_user_session_path, class: "nav-link", data: { turbo_method: :delete })
+        li.nav-item = link_to(t("sign_out"), destroy_user_session_path, class: "nav-link", data: { turbo_method: :delete })
       - else
-        li.nav-item = link_to("Přihlásit", new_user_session_path, class: "nav-link")
-        li.nav-item = link_to("Registrovat", new_user_registration_path, class: "nav-link")
+        li.nav-item = link_to(t("sign_in"), new_user_session_path, class: "nav-link")
+        li.nav-item = link_to(t("sign_up"), new_user_registration_path, class: "nav-link")

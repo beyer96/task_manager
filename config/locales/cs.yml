@@ -1,0 +1,9 @@
+cs:
+  sign_in: Přihlásit
+  sign_out: Odhlásit
+  sign_up: Registrovat
+  go_to_user_settings: Přejít do nastavení účtu
+  controllers:
+    projects: Projekty
+    tasks: Úkoly
+    tags: Tagy
