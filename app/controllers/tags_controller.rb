@@ -5,6 +5,7 @@ class TagsController < ApplicationController
   # GET /tags or /tags.json
   def index
     @tags = Tag.where("title ILIKE ?", "%#{params[:query]}%").for_user(current_user)
+    @pagy, @tags = pagy(@tags)
   end
 
   # GET /tags/new

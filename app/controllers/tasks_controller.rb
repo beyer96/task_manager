@@ -6,6 +6,7 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.where("title ILIKE ?", "%#{params[:query]}%").for_user(current_user).includes(:project, :tags)
     @tasks = @tasks.is_done(params[:done]) if params[:done]
+    @pagy, @tasks = pagy(@tasks)
   end
 
   # GET /tasks/1 or /tasks/1.json
