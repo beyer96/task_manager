@@ -3,7 +3,24 @@ cs:
   sign_out: Odhlásit
   sign_up: Registrovat
   go_to_user_settings: Přejít do nastavení účtu
-  controllers:
-    projects: Projekty
-    tasks: Úkoly
-    tags: Tagy
+  search: Hledat %{model}
+  add_new: Přidat nový %{model}
+  edit: Upravit
+  delete: Smazat
+  delete_confirmation: "Opravdu chcete smazat %{model}?"
+  back_to_index: Zpět na seznam
+  models:
+    projects:
+      one: Projekt
+      few: Projektů
+      many: Projekty
+    tasks: 
+      one: Úkol
+      few: Úkolů
+      many: Úkoly
+    tags: 
+      one: Tag
+      few: Tagů
+      many: Tagy
+  attributes:
+    title: Název

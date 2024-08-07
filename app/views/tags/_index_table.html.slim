@@ -2,7 +2,7 @@
   table.table.table-hover.text-center.align-middle
     thead
       tr
-        th = "Název"
+        th = t("attributes.title")
         th
     tbody
       - @tags.each do |tag|
@@ -10,6 +10,6 @@
           td.text-nowrap = highlight(tag.title, @query)
           td.text-end
             .btn-group
-              = link_to "Upravit", edit_tag_path(tag), class: "btn btn-warning"
-              = link_to "Smazat", tag_path(tag), data: { turbo_method: :delete, turbo_confirm: "Opravdu chcete smazat tag?" }, class: "btn btn-danger"
+              = link_to t("edit"), edit_tag_path(tag), class: "btn btn-warning"
+              = link_to t("delete"), tag_path(tag), data: { turbo_method: :delete, turbo_confirm: t("delete_confirmation", model: t("models.tags.one")) }, class: "btn btn-danger"
   = render partial: "shared/pagy"

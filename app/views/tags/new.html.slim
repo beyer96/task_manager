@@ -1,8 +1,8 @@
-h1 New tag
+h1 = t("add_new", model: t("models.tags.one"))
 
 == render "form", tag: @tag
 
 br
 
 div
-  = link_to "Back to tags", tags_path
+  = link_to t("back_to_index"), tags_path

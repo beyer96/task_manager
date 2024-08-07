@@ -1,0 +1,6 @@
+cs:
+  helpers:
+    submit:
+      tag:
+        create: Přidat %{model}
+        update: Upravit %{model}

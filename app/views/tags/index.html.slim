@@ -1,14 +1,14 @@
 .row
   .col-4
-    h1 = "Tagy"
+    h1 = t("models.tags.many")
   .col-4
     . data-controller="search"
       form action=search_tags_path method="post" data-action="submit->search#replaceState"
         .input-group.justify-content-center
-          input name="query" type="text" placeholder="Hledat tag" data-search-target="input"
-          button.btn.btn-primary type="submit" data-bs-toggle="tooltip" data-bs-title="Hledat"
+          input name="query" type="text" placeholder=t("search", model: t("models.tags.many")) data-search-target="input"
+          button.btn.btn-primary type="submit" data-bs-toggle="tooltip" data-bs-title=t("search", model: "")
             i.bi.bi-search
   .col-4.text-end
-    = link_to "Přidat nový tag", new_tag_path, class: "btn btn-success"
+    = link_to t("add_new", model: t("models.tags.one")), new_tag_path, class: "btn btn-success"
 
 = render partial: "index_table", locals: { tags: @tags }
