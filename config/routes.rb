@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tags, except: %i[show] do
+  resources :tags do
     collection do
       post :search
     end
