@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: %i[ edit update destroy ]
+  before_action :set_tag, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
 
   # GET /tags or /tags.json
@@ -8,6 +8,8 @@ class TagsController < ApplicationController
     @tags = Tag.where("title ILIKE ?", "%#{@query}%").for_user(current_user)
     @pagy, @tags = pagy(@tags)
   end
+
+  def show; end
 
   # GET /tags/new
   def new

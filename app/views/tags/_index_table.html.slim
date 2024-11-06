@@ -10,6 +10,7 @@
           td.text-nowrap = highlight(tag.title, @query)
           td.text-end
             .btn-group
+              = link_to "Detail", tag_path(tag), class: "btn btn-secondary"
               = link_to t("edit"), edit_tag_path(tag), class: "btn btn-warning"
               = link_to t("delete"), tag_path(tag), data: { turbo_method: :delete, turbo_confirm: t("delete_confirmation", model: t("models.tags.one")) }, class: "btn btn-danger"
   = render partial: "shared/pagy"
