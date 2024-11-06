@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects or /projects.json
   def index
     @query = params[:query]
-    @projects = Project.for_user(current_user).where("title ILIKE ?", "%#{@query}%")
+    @projects = Project.for_user(current_user).where("title ILIKE ?", "%#{@query}%").order(:position)
     @pagy, @projects = pagy(@projects)
   end
 
